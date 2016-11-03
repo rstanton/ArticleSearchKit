@@ -13,6 +13,22 @@ var HierarchicalMenuFilter = Searchkit.HierarchicalMenuFilter;
 var RefinementListFilter = Searchkit.RefinementListFilter;
 var LayoutResults = Searchkit.LayoutResults;
 var MenuFilter = Searchkit.MenuFilter;
+var ActionBar = Searchkit.ActionBar;
+var ActionBarRow = Searchkit.ActionBarRow;
+var HitsStats = Searchkit.HitsStats;
+var SelectedFilters = Searchkit.SelectedFilters;
+var ResetFilters = Searchkit.ResetFilters;
+var Hits = Searchkit.Hits;
+var NoHits = Searchkit.NoHits;
+
+var HitItem = function HitItem(props) {
+    return React.createElement(
+        "div",
+        null,
+        JSON.stringify(props.result._source.EAN),
+        React.createElement("br", null)
+    );
+};
 
 var App = function App() {
     return React.createElement(
@@ -56,7 +72,27 @@ var App = function App() {
                         title: "PRICEPROMPT",
                         id: "PRICEPROMPT" })
                 ),
-                React.createElement(LayoutResults, null)
+                React.createElement(
+                    LayoutResults,
+                    null,
+                    React.createElement(
+                        ActionBar,
+                        null,
+                        React.createElement(
+                            ActionBarRow,
+                            null,
+                            React.createElement(HitsStats, null)
+                        ),
+                        React.createElement(
+                            ActionBarRow,
+                            null,
+                            React.createElement(SelectedFilters, null),
+                            React.createElement(ResetFilters, null)
+                        )
+                    ),
+                    React.createElement(Hits, { mod: "sk-hits-grid", hitsPerPage: 50, itemComponent: HitItem }),
+                    React.createElement(NoHits, null)
+                )
             )
         )
     );

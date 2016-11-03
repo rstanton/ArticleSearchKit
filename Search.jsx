@@ -14,6 +14,17 @@ const HierarchicalMenuFilter = Searchkit.HierarchicalMenuFilter;
 const RefinementListFilter = Searchkit.RefinementListFilter;
 const LayoutResults = Searchkit.LayoutResults;
 const MenuFilter = Searchkit.MenuFilter;
+const ActionBar = Searchkit.ActionBar;
+const ActionBarRow = Searchkit.ActionBarRow;
+const HitsStats = Searchkit.HitsStats;
+const SelectedFilters = Searchkit.SelectedFilters;
+const ResetFilters = Searchkit.ResetFilters;
+const Hits = Searchkit.Hits;
+const NoHits = Searchkit.NoHits;
+
+const HitItem = (props) => (
+    <div>{JSON.stringify(props.result._source.EAN)}<br/></div>
+);
 
 const App = ()=> (
     <SearchkitProvider searchkit={sk}>
@@ -48,11 +59,26 @@ const App = ()=> (
                         id="PRICEPROMPT"/>
                 </SideBar>
                 <LayoutResults>
+                    <ActionBar>
 
+                        <ActionBarRow>
+                            <HitsStats/>
+                        </ActionBarRow>
+                        <ActionBarRow>
+                            <SelectedFilters/>
+                            <ResetFilters/>
+                        </ActionBarRow>
+
+                    </ActionBar>
+                    <Hits mod="sk-hits-grid" hitsPerPage={50} itemComponent={HitItem}/>
+                    <NoHits/>
                 </LayoutResults>
             </LayoutBody>
         </Layout>
     </SearchkitProvider>
 )
+
+
+
 
 ReactDOM.render(<App/>, document.getElementById('app'))
