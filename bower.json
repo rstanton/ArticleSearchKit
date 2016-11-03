@@ -1,0 +1,21 @@
+{
+  "name": "articlesearchkit",
+  "description": "Article Search for Kingfisher",
+  "main": "index.js",
+  "authors": [
+    "Ross Stanton"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "searchkit": "^0.10.1"
+  }
+}
