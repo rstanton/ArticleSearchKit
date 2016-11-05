@@ -70,7 +70,11 @@ var App = function App() {
                     React.createElement(RefinementListFilter, {
                         field: "priceprompt",
                         title: "PRICEPROMPT",
-                        id: "PRICEPROMPT" })
+                        id: "PRICEPROMPT" }),
+                    React.createElement(RefinementListFilter, {
+                        field: "ukvatcat",
+                        title: "VAT Cat (UK)",
+                        id: "VATCAT" })
                 ),
                 React.createElement(
                     LayoutResults,

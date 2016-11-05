@@ -57,6 +57,10 @@ const App = ()=> (
                         field="priceprompt"
                         title="PRICEPROMPT"
                         id="PRICEPROMPT"/>
+                    <RefinementListFilter
+                        field="ukvatcat"
+                        title="VAT Cat (UK)"
+                        id="VATCAT"/>
                 </SideBar>
                 <LayoutResults>
                     <ActionBar>
