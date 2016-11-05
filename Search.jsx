@@ -38,23 +38,23 @@ const App = ()=> (
             <LayoutBody>
                 <SideBar>
                     <RefinementListFilter
-                        field="ARTICLE_STATUS"
+                        field="article_status"
                         title="STATUS"
                         id="STATUS"/>
                     <RefinementListFilter
-                        field="UOM"
+                        field="uom"
                         title="UOM"
                         id="UOM"/>
                     <RefinementListFilter
-                        field="AGERESTRICTION"
+                        field="agerestrictions"
                         title="AGE"
                         id="AGE"/>
                     <RefinementListFilter
-                        field="WMFLAG"
+                        field="wmflag"
                         title="WMFlag"
                         id="WMFlag"/>
                     <RefinementListFilter
-                        field="PRICEPROMPT"
+                        field="priceprompt"
                         title="PRICEPROMPT"
                         id="PRICEPROMPT"/>
                 </SideBar>

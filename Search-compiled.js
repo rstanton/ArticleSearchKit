@@ -52,23 +52,23 @@ var App = function App() {
                     SideBar,
                     null,
                     React.createElement(RefinementListFilter, {
-                        field: "ARTICLE_STATUS",
+                        field: "article_status",
                         title: "STATUS",
                         id: "STATUS" }),
                     React.createElement(RefinementListFilter, {
-                        field: "UOM",
+                        field: "uom",
                         title: "UOM",
                         id: "UOM" }),
                     React.createElement(RefinementListFilter, {
-                        field: "AGERESTRICTION",
+                        field: "agerestrictions",
                         title: "AGE",
                         id: "AGE" }),
                     React.createElement(RefinementListFilter, {
-                        field: "WMFLAG",
+                        field: "wmflag",
                         title: "WMFlag",
                         id: "WMFlag" }),
                     React.createElement(RefinementListFilter, {
-                        field: "PRICEPROMPT",
+                        field: "priceprompt",
                         title: "PRICEPROMPT",
                         id: "PRICEPROMPT" })
                 ),
