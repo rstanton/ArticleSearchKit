@@ -21,12 +21,63 @@ var ResetFilters = Searchkit.ResetFilters;
 var Hits = Searchkit.Hits;
 var NoHits = Searchkit.NoHits;
 
+function RowItem(props) {
+    return React.createElement(
+        "tr",
+        null,
+        React.createElement(
+            "td",
+            null,
+            props.row._source.ean
+        ),
+        React.createElement(
+            "td",
+            null,
+            props.row._source.article_status
+        ),
+        React.createElement(
+            "td",
+            null,
+            props.row._source.fulldesc
+        ),
+        React.createElement(
+            "td",
+            null,
+            props.row._source.ukvatcat
+        ),
+        React.createElement(
+            "td",
+            null,
+            props.row._source.uom
+        ),
+        React.createElement(
+            "td",
+            null,
+            props.row._source.articlenumber
+        )
+    );
+};
+
+function TableBody(props) {
+
+    return React.createElement(
+        "tbody",
+        null,
+        React.createElement(RowItem, { row: props.hits[0] }),
+        props.hits.map(function (row, i) {
+            return React.createElement(RowItem, { row: row });
+        })
+    );
+}
 var HitItem = function HitItem(props) {
     return React.createElement(
         "div",
         null,
-        JSON.stringify(props.result._source.EAN),
-        React.createElement("br", null)
+        React.createElement(
+            "table",
+            { className: "table table-striped" },
+            React.createElement(TableBody, { hits: props.hits })
+        )
     );
 };
 
@@ -53,27 +104,31 @@ var App = function App() {
                     null,
                     React.createElement(RefinementListFilter, {
                         field: "article_status",
-                        title: "STATUS",
+                        title: "Article Status",
                         id: "STATUS" }),
+                    React.createElement(RefinementListFilter, {
+                        field: "articletype",
+                        title: "Article Type",
+                        id: "ARTTYPE" }),
                     React.createElement(RefinementListFilter, {
                         field: "uom",
                         title: "UOM",
                         id: "UOM" }),
                     React.createElement(RefinementListFilter, {
-                        field: "agerestrictions",
-                        title: "AGE",
+                        field: "agerestriction",
+                        title: "Age Restriction",
                         id: "AGE" }),
                     React.createElement(RefinementListFilter, {
                         field: "wmflag",
-                        title: "WMFlag",
+                        title: "W&M Flag",
                         id: "WMFlag" }),
                     React.createElement(RefinementListFilter, {
                         field: "priceprompt",
-                        title: "PRICEPROMPT",
+                        title: "Price Prompt Indicator",
                         id: "PRICEPROMPT" }),
                     React.createElement(RefinementListFilter, {
                         field: "ukvatcat",
-                        title: "VAT Cat (UK)",
+                        title: "Vat Category UK",
                         id: "VATCAT" })
                 ),
                 React.createElement(
@@ -94,7 +149,7 @@ var App = function App() {
                             React.createElement(ResetFilters, null)
                         )
                     ),
-                    React.createElement(Hits, { mod: "sk-hits-grid", hitsPerPage: 50, itemComponent: HitItem }),
+                    React.createElement(Hits, { hitsPerPage: 10, listComponent: HitItem }),
                     React.createElement(NoHits, null)
                 )
             )

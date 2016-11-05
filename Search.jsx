@@ -22,9 +22,40 @@ const ResetFilters = Searchkit.ResetFilters;
 const Hits = Searchkit.Hits;
 const NoHits = Searchkit.NoHits;
 
-const HitItem = (props) => (
-    <div>{JSON.stringify(props.result._source.EAN)}<br/></div>
+function RowItem(props) {
+    return (
+        <tr>
+            <td>{props.row._source.ean}</td>
+            <td>{props.row._source.article_status}</td>
+            <td>{props.row._source.fulldesc}</td>
+            <td>{props.row._source.ukvatcat}</td>
+            <td>{props.row._source.uom}</td>
+            <td>{props.row._source.articlenumber}</td>
+    </tr>);
+};
+
+function TableBody(props) {
+
+    return (
+        <tbody>
+            <RowItem row={props.hits[0]}/>
+            {props.hits.map(function(row, i){
+                return(
+                    <RowItem row={row}/>
+                )
+            })}
+        </tbody>
+    );
+
+}
+const HitItem = (props)=>(
+    <div>
+        <table className="table table-striped">
+            <TableBody hits={props.hits}/>
+        </table>
+    </div>
 );
+
 
 const App = ()=> (
     <SearchkitProvider searchkit={sk}>
@@ -39,27 +70,31 @@ const App = ()=> (
                 <SideBar>
                     <RefinementListFilter
                         field="article_status"
-                        title="STATUS"
+                        title="Article Status"
                         id="STATUS"/>
+                    <RefinementListFilter
+                        field="articletype"
+                        title="Article Type"
+                        id="ARTTYPE"/>
                     <RefinementListFilter
                         field="uom"
                         title="UOM"
                         id="UOM"/>
                     <RefinementListFilter
-                        field="agerestrictions"
-                        title="AGE"
+                        field="agerestriction"
+                        title="Age Restriction"
                         id="AGE"/>
                     <RefinementListFilter
                         field="wmflag"
-                        title="WMFlag"
+                        title="W&M Flag"
                         id="WMFlag"/>
                     <RefinementListFilter
                         field="priceprompt"
-                        title="PRICEPROMPT"
+                        title="Price Prompt Indicator"
                         id="PRICEPROMPT"/>
                     <RefinementListFilter
                         field="ukvatcat"
-                        title="VAT Cat (UK)"
+                        title="Vat Category UK"
                         id="VATCAT"/>
                 </SideBar>
                 <LayoutResults>
@@ -74,15 +109,15 @@ const App = ()=> (
                         </ActionBarRow>
 
                     </ActionBar>
-                    <Hits mod="sk-hits-grid" hitsPerPage={50} itemComponent={HitItem}/>
+                    <Hits hitsPerPage={10} listComponent={HitItem}/>
                     <NoHits/>
                 </LayoutResults>
             </LayoutBody>
         </Layout>
     </SearchkitProvider>
-)
+);
 
 
 
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+ReactDOM.render(<App/>, document.getElementById('app'));

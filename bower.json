@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "searchkit": "^0.10.1"
+    "searchkit": "^0.10.1",
+    "bootstrap": "^3.3.7"
   }
 }
